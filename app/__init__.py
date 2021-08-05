@@ -18,8 +18,8 @@ database_url = os.environ.get('DATABASE_URL', None)
 
 if database_url:
     if database_url.startswith("postgres://"):
-    database_url = database_url.replace("postgres://", "postgresql://", 1)
-    # rest of connection code using the connection string `uri`
+        database_url = database_url.replace("postgres://", "postgresql://", 1)
+        # rest of connection code using the connection string `uri`
 
     app.config['SQLALCHEMY_DATABASE_URI'] = database_url
 else:
