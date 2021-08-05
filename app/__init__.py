@@ -11,10 +11,8 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 import os
 import re
 
-uri = os.getenv("DATABASE_URL")  # or other relevant config var
-if uri.startswith("postgres://"):
-    uri = uri.replace("postgres://", "postgresql://", 1)
-# rest of connection code using the connection string `uri`
+
+
 
 database_url = os.environ.get('DATABASE_URL', None)
 
@@ -25,6 +23,10 @@ else:
         os.path.join(basedir, '../app.db')
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+if database_url.startswith("postgres://"):
+    database_url = database_url.replace("postgres://", "postgresql://", 1)
+# rest of connection code using the connection string `uri`
 
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or 'fill-in-with-secret-key'
 
